@@ -111,7 +111,7 @@ public static final int WIDTH = 1920, HEIGHT = WIDTH / 12 * 9, RATIO = WIDTH / H
 		
 		g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
 		
-		g2.drawImage(originalImage, 0, 0, newW, newH, null);
+		g2.drawImage(originalImage, (int)(WIDTH - newW)/2 , (int)(HEIGHT - newH)/2, newW, newH, null);
 		
 		g2.dispose();
 //		g.drawImage(newImage, 0, 0, null);
