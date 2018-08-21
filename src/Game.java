@@ -25,14 +25,13 @@ public static final int WIDTH = 1920, HEIGHT = WIDTH / 12 * 9;
 
 	Image img = imageLoader.loadImage("Deadbirds.png");
 	Image newImage = img;
-	int scalex = 1;
-	int scaley= 1;
+	int scalex = newImage.getWidth(null);
+	int scaley= newImage.getHeight(null);
 	
 	int IFW = JComponent.WHEN_IN_FOCUSED_WINDOW;
 	
-	String A = "A";
-	
-	boolean scaling = false;
+	boolean tooBig = false;
+	boolean tooSmall = false;
 	
 	
 	public Game() {
@@ -100,10 +99,26 @@ public static final int WIDTH = 1920, HEIGHT = WIDTH / 12 * 9;
 	
 	private void update(double delta) {
 		
-		scalex = (int)(scalex * delta);
-		scaley = (int)(scaley * delta);
+		if(scalex >= (int)(img.getWidth(null) * 2) || scaley >= (int)(img.getHeight(null) * 2)) {
+			tooBig = true;
+			scalex = (int)(img.getWidth(null) * 2);
+			scaley = (int)(img.getHeight(null) * 2);
+		}
+		if(scalex <= (int)(img.getWidth(null) / 2) || scaley <= (int)(img.getHeight(null) / 2)) {
+			tooSmall = true;
+			scalex = (int)(img.getWidth(null) / 2);
+			scaley = (int)(img.getHeight(null) / 2);
+		}
+		else {
+			tooSmall = false;
+			tooBig = false;
+			
+//			scalex = (int)(scalex * delta);
+//			scaley = (int)(scaley * delta);
+			newImage = img.getScaledInstance(scalex, scaley, Image.SCALE_FAST);
+		}
 
-		newImage = img.getScaledInstance(scalex, scaley, Image.SCALE_DEFAULT);
+		
 		
 	}
 

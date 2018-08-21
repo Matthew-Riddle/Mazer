@@ -35,9 +35,7 @@ public class ScaleAction extends AbstractAction {
 		private static final long serialVersionUID = -4246213016966463222L;
 
 	public Scale(int factor) {
-		System.out.println("inside the scale thing");
-		game.scalex += factor;
-		game.scaley += factor;
+
 	}
 
 	@Override
@@ -45,13 +43,23 @@ public class ScaleAction extends AbstractAction {
 		
 		
 		if( e.getActionCommand().equals("w")) {
-			game.scalex += 4;
-			game.scaley += 4;
+			if(game.tooBig) {
+				System.out.println("Cannot go any larger!");
+				return;
+			}
+			game.scalex += 1;
+			game.scaley += 1;
+			//System.out.println("x: " + game.scalex + " y: " + game.scaley);
+			//System.out.println("dont");
 			System.out.println("Scaling up");
 		}
 		if( e.getActionCommand().equals("s")) {
-			game.scalex -= 4;
-			game.scaley -= 4;
+			if(game.tooSmall) {
+				System.out.println("Cannot go any smaller!");
+				return;
+			}
+			game.scalex -= 1;
+			game.scaley -= 1;
 			System.out.println("Scaling down");
 		}
 		
