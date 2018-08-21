@@ -26,5 +26,4 @@ private static final long serialVersionUID = -4701693684670803303L;
 		frame.setVisible(true);
 		game.start();
 	}
-	
 }

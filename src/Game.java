@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
 public class Game extends JPanel implements Runnable{
+
 	
 /**
 	 * 
@@ -21,6 +22,7 @@ public static final int WIDTH = 1920, HEIGHT = WIDTH / 12 * 9;
 	
 	ImageLoader imageLoader = new ImageLoader();
 	
+
 	Image img = imageLoader.loadImage("Deadbirds.png");
 	Image newImage = img;
 	int scalex = 1;
@@ -58,7 +60,7 @@ public static final int WIDTH = 1920, HEIGHT = WIDTH / 12 * 9;
 	@Override
 	public void run() {
 		long lastTime = System.nanoTime();
-		double amountOfTicks = 10.0;
+		double amountOfTicks = 60.0;
 		double ns = 1000000000 / amountOfTicks;
 		double delta = 0;
 		long timer = System.currentTimeMillis();
@@ -73,6 +75,7 @@ public static final int WIDTH = 1920, HEIGHT = WIDTH / 12 * 9;
 			}
 			if(running)
 				repaint();
+			
 			frames++;
 			
 			if(System.currentTimeMillis() - timer > 1000) {
@@ -99,6 +102,7 @@ public static final int WIDTH = 1920, HEIGHT = WIDTH / 12 * 9;
 		
 		scalex = (int)(scalex * delta);
 		scaley = (int)(scaley * delta);
+
 		newImage = img.getScaledInstance(scalex, scaley, Image.SCALE_DEFAULT);
 		
 	}
