@@ -1,11 +1,10 @@
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
+import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
 
-import javax.swing.JComponent;
 import javax.swing.JPanel;
-import javax.swing.KeyStroke;
 
 public class Game extends JPanel implements Runnable{
 
@@ -15,20 +14,34 @@ public class Game extends JPanel implements Runnable{
 	 */
 	private static final long serialVersionUID = 1L;
 
-public static final int WIDTH = 1920, HEIGHT = WIDTH / 12 * 9;
+public static final int WIDTH = 1920, HEIGHT = WIDTH / 12 * 9, RATIO = WIDTH / HEIGHT;
 	
 	private Thread thread;
 	private boolean running = false;
 	
 	ImageLoader imageLoader = new ImageLoader();
 	
+	public float scalarValue = .01f;
+	
 
 	Image img = imageLoader.loadImage("Deadbirds.png");
 	Image newImage = img;
-	int scalex = newImage.getWidth(null);
-	int scaley= newImage.getHeight(null);
+	int scalex = img.getWidth(null);
+	int scaley= img.getHeight(null);
 	
-	int IFW = JComponent.WHEN_IN_FOCUSED_WINDOW;
+	float xScaleFactor = 1;
+	float yScaleFactor = 1;
+	
+	BufferedImage originalImage = imageLoader.loadImage("Deadbirds.png");
+	
+	/*Original dimensions*/
+	int oHeight = img.getHeight(null);
+	int oWidth = img.getWidth(null);
+	int ratio = oWidth / oHeight;
+	
+	
+	
+	
 	
 	boolean tooBig = false;
 	boolean tooSmall = false;
@@ -91,33 +104,61 @@ public static final int WIDTH = 1920, HEIGHT = WIDTH / 12 * 9;
 		
 		super.paintComponent(g);
 		
-		g.drawImage(newImage, WIDTH/2 - newImage.getWidth(null)/2, HEIGHT/2 - newImage.getHeight(null)/2, null);
-		g.dispose();
+		Graphics2D g2 = (Graphics2D)g;
+		
+		int newW = (int)(originalImage.getWidth() * xScaleFactor);
+		int newH = (int)(originalImage.getHeight() * yScaleFactor);
+		
+		g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+		
+		g2.drawImage(originalImage, 0, 0, newW, newH, null);
+		
+		g2.dispose();
+//		g.drawImage(newImage, 0, 0, null);
+//		g.dispose();
 		
 	}
 	
 	
 	private void update(double delta) {
 		
-		if(scalex >= (int)(img.getWidth(null) * 2) || scaley >= (int)(img.getHeight(null) * 2)) {
-			tooBig = true;
-			scalex = (int)(img.getWidth(null) * 2);
-			scaley = (int)(img.getHeight(null) * 2);
-		}
-		if(scalex <= (int)(img.getWidth(null) / 2) || scaley <= (int)(img.getHeight(null) / 2)) {
-			tooSmall = true;
-			scalex = (int)(img.getWidth(null) / 2);
-			scaley = (int)(img.getHeight(null) / 2);
-		}
-		else {
-			tooSmall = false;
-			tooBig = false;
-			
-//			scalex = (int)(scalex * delta);
-//			scaley = (int)(scaley * delta);
-			newImage = img.getScaledInstance(scalex, scaley, Image.SCALE_FAST);
-		}
-
+//		if(scalex >= (int)(oWidth * 2) || scaley >= (int)(oHeight * 2)) {
+//			tooBig = true;
+//			scalex = (int)(oWidth * 2);
+//			scaley = (int)(oHeight * 2);
+//		}
+//		if(scalex <= (int)(oWidth / 2) || scaley <= (int)(oHeight / 2)) {
+//			tooSmall = true;
+//			scalex = (int)(oWidth / 2);
+//			scaley = (int)(oHeight / 2);
+//		}
+//		int nImgRatio = newImage.getWidth(null) / newImage.getHeight(null);
+//		System.out.println("new Ratio:" + nImgRatio + " Old: " + ratio);
+//		if(nImgRatio > ratio) {
+//			tooSmall = true;
+//			System.out.println("greater");
+//			scalex += scalarValue;
+//			scaley += scalarValue;
+//			newImage = img.getScaledInstance(scalex, scaley, Image.SCALE_FAST);
+//		}
+//		else if(nImgRatio < ratio) {
+//			tooBig = true;
+//			scalex -= scalarValue;
+//			scaley -= scalarValue;
+//			newImage = img.getScaledInstance(scalex, scaley, Image.SCALE_FAST);
+//			
+//		}
+//		else {
+//			tooSmall = false;
+//			tooBig = false;
+//			System.out.println("in here");
+////			scalex = (int)(scalex * delta);
+////			scaley = (int)(scaley * delta);
+//			
+//		}
+//
+//		newImage = img.getScaledInstance(scalex, scaley, Image.SCALE_FAST);
+		
 		
 		
 	}
