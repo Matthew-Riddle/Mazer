@@ -20,8 +20,8 @@ public class ScaleAction extends AbstractAction {
 		game.getInputMap(IFW).put(KeyStroke.getKeyStroke("W"), SCALE_UP);
 		game.getInputMap(IFW).put(KeyStroke.getKeyStroke("S"), SCALE_DOWN);
 		
-		game.getActionMap().put(SCALE_UP, new Scale(1));
-		game.getActionMap().put(SCALE_DOWN, new Scale(-1));
+		game.getActionMap().put(SCALE_UP, new Scale());
+		game.getActionMap().put(SCALE_DOWN, new Scale());
 		
 	}
 	
@@ -36,9 +36,6 @@ public class ScaleAction extends AbstractAction {
 		 */
 		private static final long serialVersionUID = -4246213016966463222L;
 
-	public Scale(int factor) {
-		System.out.println((game.img.getWidth(null) * 2));
-	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

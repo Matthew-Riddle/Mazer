@@ -1,10 +1,11 @@
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 public class Game extends JPanel implements Runnable{
 
@@ -14,7 +15,8 @@ public class Game extends JPanel implements Runnable{
 	 */
 	private static final long serialVersionUID = 1L;
 
-public static final int WIDTH = 1920, HEIGHT = WIDTH / 12 * 9, RATIO = WIDTH / HEIGHT;
+	public static final int WIDTH = 1920, HEIGHT = WIDTH / 12 * 9, RATIO = WIDTH / HEIGHT;
+	
 	
 	private Thread thread;
 	private boolean running = false;
@@ -23,32 +25,20 @@ public static final int WIDTH = 1920, HEIGHT = WIDTH / 12 * 9, RATIO = WIDTH / H
 	
 	public float scalarValue = .01f;
 	
-
-	Image img = imageLoader.loadImage("Deadbirds.png");
-	Image newImage = img;
-	int scalex = img.getWidth(null);
-	int scaley= img.getHeight(null);
-	
 	float xScaleFactor = 1;
 	float yScaleFactor = 1;
 	
 	BufferedImage originalImage = imageLoader.loadImage("Deadbirds.png");
+	private JLabel map;
 	
-	/*Original dimensions*/
-	int oHeight = img.getHeight(null);
-	int oWidth = img.getWidth(null);
-	int ratio = oWidth / oHeight;
-	
-	
-	
-	
-	
+
 	boolean tooBig = false;
 	boolean tooSmall = false;
 	
 	
 	public Game() {
 	
+		
 		new Window("MAZER", HEIGHT, WIDTH, this);
 		new ScaleAction(this);
 		
@@ -102,6 +92,9 @@ public static final int WIDTH = 1920, HEIGHT = WIDTH / 12 * 9, RATIO = WIDTH / H
 	protected void paintComponent(Graphics g) {
 		
 		
+		
+		
+		
 		super.paintComponent(g);
 		
 		Graphics2D g2 = (Graphics2D)g;
@@ -113,9 +106,9 @@ public static final int WIDTH = 1920, HEIGHT = WIDTH / 12 * 9, RATIO = WIDTH / H
 		
 		g2.drawImage(originalImage, (int)(WIDTH - newW)/2 , (int)(HEIGHT - newH)/2, newW, newH, null);
 		
-		g2.dispose();
-//		g.drawImage(newImage, 0, 0, null);
-//		g.dispose();
+		//g2.dispose();
+		
+		
 		
 	}
 	
