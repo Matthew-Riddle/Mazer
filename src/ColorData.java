@@ -2,12 +2,17 @@ import java.awt.image.BufferedImage;
 
 public class ColorData {
 
-	ColorData(){}
+	ColorData(int clr, int red, int green, int blue){
+		this.clr = clr;
+		this.red = red;
+		this.green = green;
+		this.blue = blue;
+	}
 	
-	int clr;
-	int red;
-	int green;
-	int blue;
+	int clr = 0;
+	int red = 0;
+	int green = 0;
+	int blue = 0;
 	
 
 	public int getClr() {

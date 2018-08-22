@@ -16,7 +16,7 @@ public class Game {
 	
 	public Game() {
 		//Load in a maze
-		BufferedImage maze = imageLoader.loadImage("simplemaze.jpg");
+		BufferedImage maze = imageLoader.loadImage("simplemaze.bmp");
 		
 		ColorReader colorReader = new ColorReader(maze);
 		
