@@ -12,33 +12,24 @@ private static final long serialVersionUID = -4701693684670803303L;
 	
 	public Window(String title, int width, int height, Game game) {
 		
-		JFrame frame = new JFrame(title);
-		JPanel panel = new JPanel();
+		JFrame frame = new JFrame();
 		JScrollPane pane = new JScrollPane(game);
 		
-//		panel.setPreferredSize(new Dimension(width, height));
-//		panel.add(game);
 		pane.setPreferredSize(new Dimension(width, height));
-		//pane.add(frame);
+		pane.setVerticalScrollBarPolicy(pane.VERTICAL_SCROLLBAR_ALWAYS);
 		
-//		pane.setPreferredSize(new Dimension(width, height));
-//		frame.add(pane, BorderLayout.CENTER);
-//		frame.revalidate();
-//		
+		add(pane, BorderLayout.CENTER);
 		
-		frame.setPreferredSize(new Dimension(width, height));
-		frame.setMaximumSize(new Dimension(width, height));
-		frame.setMinimumSize(new Dimension(width, height));
+		setTitle(title);
+		setPreferredSize(new Dimension(width, height));
+		setMaximumSize(new Dimension(width, height));
+		setMinimumSize(new Dimension(width, height));
 		
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setResizable(true);
-		frame.setLocationRelativeTo(null);
-		frame.add(pane);
-		frame.add(game);
-		pane.revalidate();
-		pane.repaint();
-		frame.pack();
-		frame.setVisible(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setResizable(true);
+		setLocationRelativeTo(null);
+		pack();
+		setVisible(true);
 		
 		game.start();
 		
