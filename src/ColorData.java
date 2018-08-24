@@ -13,8 +13,14 @@ public class ColorData {
 	int red = 0;
 	int green = 0;
 	int blue = 0;
+	boolean isBlack = false;
 	
-
+	public boolean getIsBlack() {
+		return isBlack;
+	}
+	public void setIsBlack(boolean isBlack) {
+		this.isBlack = isBlack;
+	}
 	public int getClr() {
 		return clr;
 	}
