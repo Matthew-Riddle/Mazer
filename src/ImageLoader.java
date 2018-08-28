@@ -6,7 +6,7 @@ import javax.imageio.ImageIO;
 
 public class ImageLoader {
 
-	ImageLoader() {	}
+	public ImageLoader() {	}
 	
 	public BufferedImage loadImage(String fileName) {
 		BufferedImage img = null;

@@ -9,6 +9,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.plaf.synth.SynthSeparatorUI;
 
+import colordata.ColorData;
+import colordata.ColorReader;
+
 public class Game {
 
 
@@ -40,26 +43,39 @@ public class Game {
 		 *Each node will have an array of size 4.
 		 *Position 0 will be the top neighbors position, position 1 will be the right, and so on in a clockwise fashion.
 		 *I could possibly just keep track of how many spaces there are between each neighbor and store that information
-		 *which could be useful in finding the shortest path. Need to do more research.*/
+		 *which could be useful in finding the shortest path. Need to do more research.
+		 *
+		 *No need to create nodes. Those are just needed for djisktras. Instead just read everything as path, start, end, and wall. Then just do
+		 *a depth first search.*/
 		
 		int mazeWidth = maze.getWidth();
 		int mazeHeight = maze.getHeight();
 		
+		//First pass to create nodes
 		for(int y = 0; y < mazeWidth; y++) {
 			for(int x = 0; x < mazeHeight; x++) {
 				int position = x + mazeWidth * y;
+				int rowOffset = y * mazeWidth;
+				int left = position - 1;
+				int right = position + 1;
+				int up = rowOffset - mazeWidth;
+				int below = rowOffset + mazeWidth;
 				
-				//If we are on the first row and the tile is black, do nothing
-				if(y == 0 && colorData[position].getIsBlack() == true) {
-					visited[position] = true;
+				//Redundant for no reason... will fix later
+				int prev = left;
+				int curr = position;
+				int next = right;
+				
+				if(!colorData[curr].getIsBlack() && y == 0) {
+					System.out.println("Start");
+				}
+				if(!colorData[curr].getIsBlack() && y == mazeHeight - 1) {
+					System.out.println("End");
+				}
+				if(colorData[curr].getIsBlack()) {
+					System.out.println("Wall");
 				}
 				
-				//If we are on the first row and the tile is white, we are at the start position
-				if(y == 0 && colorData[position].getIsBlack() == false) {
-					// 
-				}
-				
-				System.out.println(visited[position]);
 			}
 			
 		}

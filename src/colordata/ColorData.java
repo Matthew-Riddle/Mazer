@@ -1,3 +1,4 @@
+package colordata;
 import java.awt.image.BufferedImage;
 
 public class ColorData {

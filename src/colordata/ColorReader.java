@@ -1,12 +1,13 @@
+package colordata;
 import java.awt.image.BufferedImage;
 
 public class ColorReader {
 	BufferedImage maze;
-	ColorReader(BufferedImage maze) {
+	public ColorReader(BufferedImage maze) {
 		this.maze = maze;
 	}
 	
-	ColorData[] readColors(){
+	public ColorData[] readColors(){
 		
 		int mazeWidth = maze.getWidth();
 		int mazeHeight = maze.getHeight();
