@@ -12,12 +12,12 @@ import javax.swing.plaf.synth.SynthSeparatorUI;
 import colordata.ColorData;
 import colordata.ColorReader;
 
-public class Game {
+public class DepthFirst {
 
 
 	ImageLoader imageLoader = new ImageLoader();
 	
-	public Game() {
+	public DepthFirst() {
 		//Load in a maze
 		BufferedImage maze = imageLoader.loadImage("simplemaze.bmp");
 		

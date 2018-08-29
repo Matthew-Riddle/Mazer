@@ -19,7 +19,7 @@ public class Source {
 		 *Algorithm class 
 		 */
 		
-		new Game();
+		new DepthFirst();
 
 	}
 
